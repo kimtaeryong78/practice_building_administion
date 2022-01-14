@@ -4,18 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.cosmos.mapper.BookMapper">
-	<sql id="myBuilding"> where build_code = 1 </sql>
+	<sql id="myBuilding"> build_code = 1 </sql>
 
 
-	<select id="getCurrentDate2" resultType="string">
+	<!-- <select id="getCurrentDate2" resultType="string">
 		select current_date
-	</select>
+	</select> -->
 
 	<select id="getAllBooking" resultType="com.cosmos.dto.BookingDTO">
 		select * from booking
-		<include refid="myBuilding"></include>
+		<where><include refid="myBuilding"></include></where>
 	</select>
-
-
-
+	
+	<insert id="insertBooking">
+		INSERT INTO booking VALUES(nextval('booking_seq'),#{room_no},#{name},#{phone},#{adult},#{child},#{start_date},#{end_date},#{options},'0',) 
+		
+	</insert>
 </mapper>
