@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cosmos.mapper.NoticeMapper">
+	<sql id="myBuilding"> where build_code = 1 </sql>
+	
+	<select id="getAllRoomInfo" resultType="com.cosmos.dto.RoomDTO">
+		select * from notice
+	</select>
+
+
+
+
+
+</mapper>
