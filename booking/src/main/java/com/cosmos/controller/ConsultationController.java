@@ -19,11 +19,17 @@ public class ConsultationController {
 	public ConsultationService cService;
 
 	@GetMapping("/main")
-	public String BoardMain(Model model) {
+	public String boardMain(Model model) {
 		int boardCount = cService.allNumberBoard();
 		ArrayList<ConsultationDTO> consultationList = cService.readAllBoard();
 		model.addAttribute("boardList", consultationList);
 		model.addAttribute("boardCount", boardCount);
 		return "board";
 	}
+
+	@GetMapping("/write")
+	public String boardWrite() {
+		return "write";
+	}
+
 }

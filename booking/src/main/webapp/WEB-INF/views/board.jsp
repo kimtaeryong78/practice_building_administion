@@ -75,7 +75,7 @@
 				</div>
 				<div class="rb-bbs-footer">
 					<div class="rb-actions row">
-						<nav aria-label="Page navigation">
+						<nav aria-label="Page navigation d-inline">
 							<ul class="pagination justify-content-center">
 								<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 								<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -85,12 +85,10 @@
 								<li class="page-item"><a class="page-link" href="#">5</a></li>
 								<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 							</ul>
-						</nav>
-						<div class="col-xs-12 col-sm-3">
-							<div class="btn btn-secondary">
-								<a href="./write.html" class="btn btn-default btn-sm">相談する</a>
+							<div class="btn btn-secondary float-end">
+								<a href="./write.html" class="btn btn-default btn-sm text-white">相談する</a>
 							</div>
-						</div>
+						</nav>
 					</div>
 					<div class="rb-search row">
 						<div class="col-xs-12 col-sm-6 col-sm-offset-3">
