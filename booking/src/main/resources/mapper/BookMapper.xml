@@ -2,22 +2,124 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.cosmos.mapper.BookMapper">
 	<sql id="myBuilding"> build_code = 1 </sql>
 
+	<!-- <select id="getCurrentDate2" resultType="string"> select current_date 
+		</select> -->
 
-	<!-- <select id="getCurrentDate2" resultType="string">
-		select current_date
-	</select> -->
-
-	<select id="getAllBooking" resultType="com.cosmos.dto.BookingDTO">
+	<select id="getAllBooking"
+		resultType="com.cosmos.dto.BookingDTO">
 		select * from booking
-		<where><include refid="myBuilding"></include></where>
+		<where>
+			<include refid="myBuilding"></include>
+		</where>
 	</select>
-	
-	<insert id="insertBooking">
-		INSERT INTO booking VALUES(nextval('booking_seq'),#{room_no},#{name},#{phone},#{adult},#{child},#{start_date},#{end_date},#{options},'0',) 
-		
+
+	<insert id="insertBooking"
+		parameterType="com.cosmos.dto.BookingDTO">
+		INSERT INTO public.booking
+		VALUES
+		(nextval('booking_seq')
+		, #{room_no}
+		, #{name}
+		, #{phone}
+		, #{adult}
+		<if test="child == null">
+			, null
+		</if>
+		<if test="child != null">
+			, #{child}
+		</if>
+		, #{start_date}
+		, #{end_date}
+		, #{options}
+		, '0'
+		, #{total_cost}
+		, '0'
+		,
+		null
+		, null
+		, null
+		,'0'
+		, now()
+		, now()
+		, 1)
 	</insert>
+
+	<select id="getPresentCost"
+		resultType="com.cosmos.dto.BookingDTO">
+		select
+		cast(#{adult} as integer) * "room_Info".adult_cost
+		+
+		cast(#{child} as integer) * "room_Info".child_cost
+		+ (
+		select sum(cost)
+		from options
+		inner join unnest(string_to_array(#{options},'/')) 
+		as items 
+		on options.item = items 
+		from "room_Info"
+		<where>
+			"room_Info".no=#{room_no}
+		</where>
+	</select>
+
+	<update id="modifyBooking" parameterType="com.cosmos.dto.BookingDTO">
+		UPDATE booking
+		<set>
+			<if test="room_no != null">
+				room_no = #{room_no},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+			<if test="adult != null">
+				adult = #{adult},
+			</if>
+			<if test="child != null">
+				child = #{child},
+			</if>
+			<if test="start_date != null">
+				start_date = #{start_date},
+			</if>
+			<if test="end_date != null">
+				end_date = #{end_date},
+			</if>
+			<if test="options != null">
+				options = #{options},
+			</if>
+			<if test="payment_flag != null">
+				payment_flag = #{payment_flag},
+			</if>
+			<if test="total_cost != null">
+				total_cost = #{total_cost},
+			</if>
+			<if test="cancel_flag != null">
+				cancel_flag = #{cancel_flag},
+			</if>
+			<if test="bank_name != null">
+				bank_name = #{bank_name},
+			</if>
+			<if test="bank_branch_code != null">
+				bank_branch_code = #{bank_branch_code},
+			</if>
+			<if test="bank_account_number != null">
+				bank_account_number = #{bank_account_number},
+			</if>
+			<if test="delete_flag != null">
+				delete_flag = #{delete_flag},
+			</if>
+			<if test="updated_at != null">
+				updated_at = #{updated_at},
+			</if>
+		</set>
+		<where>
+			"no" = #{no}
+		</where>
+	</update>
 </mapper>

@@ -2,16 +2,60 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.cosmos.mapper.OptionMapper">
-	<sql id="myBuilding"> where build_code = 1 </sql>
-	
-	<select id="getAllRoomInfo" resultType="com.cosmos.dto.RoomDTO">
+	<sql id="myBuilding"> build_code = 1 </sql>
+
+	<select id="getAllOptions"
+		resultType="com.cosmos.dto.OptionsDTO">
 		select * from options
+		<where>
+			<include refid="myBuilding"></include>
+		</where>
 	</select>
-	
 
+	<insert id="insertOptions"
+		parameterType="com.cosmos.dto.OptionsDTO">
+		INSERT
+		INTO options(
+		"no"
+		, item
+		, cost
+		, activity
+		,
+		delete_flag
+		, created_at
+		, updated_at
+		)
+		VALUES (
+		(nextval('options_seq')
+		,
+		#{item}
+		, #{cost}
+		, '0'
+		, '0'
+		, now()
+		, now()
+		)
+	</insert>
 
+	<update id="modifyOptions" parameterType="com.cosmos.dto.OptionsDTO">
+		UPDATE options
+		<set>
+			<if test="item != null">
+				item = #{item},
+			</if>
+			<if test="cost != null">
+				cost = #{cost},
+			</if>
+			, activity = #{activity}
+			, delete_flag = #{delete_flag}
+			, updated_at = now()
+		</set>
+		<where>
+			"no" = #{no}
+		</where>
+	</update>
 
 
 </mapper>
