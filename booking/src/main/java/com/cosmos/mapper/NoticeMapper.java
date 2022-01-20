@@ -15,8 +15,6 @@ public interface NoticeMapper {
 
 	public String insertNotice(NoticeDTO notice);
 
-	public String deleteNotice(int no);
-
-	public String modifyNotice(NoticeDTO notice);
+	public String updateNotice(NoticeDTO notice);
 
 }

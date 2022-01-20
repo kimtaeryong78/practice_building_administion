@@ -24,9 +24,9 @@
 						<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="/#news">お知らせ</a></li>
 						<li class="nav-item"><a class="nav-link" href="/#map">位置</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/main">掲示板</a></li>
-						<li class="nav-item"><a class="nav-link" href="/room/roomWriting">ルーム情報入力・編集</a></li>
-						<li class="nav-item"><a class="nav-link" href="/consultation">お問い合わせ</a></li>
+						<li class="nav-item"><a class="nav-link" href="/board">掲示板</a></li>
+						<li class="nav-item"><a class="nav-link" href="/booking">お問い合わせ</a></li>
+						<li class="nav-item"><a class="nav-link" href="/room">ルーム情報入力・編集</a></li>
 					</ul>
 				</div>
 			</div>

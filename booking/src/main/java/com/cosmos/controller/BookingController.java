@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/room")
-public class RoomController {
+@RequestMapping("/booking")
+public class BookingController {
 
 	@GetMapping("")
-	public String roomSetting() {
-		return "administrator/roomWriting";
-	}
+	public String booking() {
+		return "booking/booking";
+	} // booking page
 
 }

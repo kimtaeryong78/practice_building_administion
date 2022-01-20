@@ -11,11 +11,11 @@ public class CommonExceptionAdvice {
 	public String except(Exception e, Model model) {
 		model.addAttribute("exception", e);
 		e.printStackTrace();
-		return "error_page";
+		return "error/error_page";
 	}
 
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public String error404(NoHandlerFoundException e) {
-		return "error_404";
+		return "error/error_404";
 	}
 }

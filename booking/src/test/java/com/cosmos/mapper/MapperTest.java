@@ -27,18 +27,26 @@ public class MapperTest {
 		// System.out.println(NMapper.getMainNotice());
 		// System.out.println(CMapper.getAllBoard());
 		try {
+			/*
+			 * ConsultationDTO consultation = new ConsultationDTO();
+			 * consultation.setGrno(1); consultation.setGrgrod(0); consultation.setDepth(0);
+			 * consultation.setTitle("test1234あかさた漢字");
+			 * consultation.setContents("test1234あかさた漢字");
+			 * consultation.setName("test1234あかさた漢字");
+			 * consultation.setPasswd("test1234あかさた漢字"); consultation.setLock_flag("1");
+			 * consultation.setBuild_code(1); CMapper.insertBoard(consultation);
+			 * System.out.println(consultation);
+			 */
 			ConsultationDTO consultation = new ConsultationDTO();
-			consultation.setGrno(1);
-			consultation.setGrgrod(0);
-			consultation.setDepth(0);
-			consultation.setTitle("test1234あかさた漢字");
-			consultation.setContents("test1234あかさた漢字");
-			consultation.setName("test1234あかさた漢字");
-			consultation.setPasswd("test1234あかさた漢字");
+			consultation.setNo(100);
+			consultation.setTitle("modify1234あかさた漢字");
+			consultation.setContents("modify1234あかさた漢字");
+			consultation.setName("modify1234あかさた漢字");
+			consultation.setPasswd("modify1234あかさた漢字");
 			consultation.setLock_flag("1");
-			consultation.setBuild_code(1);
-			CMapper.insertBoard(consultation);
+			consultation.setDelete_flag("1");
 			System.out.println(consultation);
+			CMapper.updateBoard(consultation);
 		} catch (Exception e) {
 			System.out.println("fail");
 			e.printStackTrace();
@@ -47,7 +55,9 @@ public class MapperTest {
 
 	@Test
 	public void Test1() {
-		System.out.println(CMapper.countApply(1));
+		// System.out.println(CMapper.countApply(1));
+		// System.out.println(NMapper.getMainNotice());
+		System.out.println(CMapper.getBoard(66));
 	}
 
 }

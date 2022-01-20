@@ -15,9 +15,6 @@
 
 	<select id="getMainNotice" resultType="com.cosmos.dto.NoticeDTO">
 		select * from notice
-		<where>
-			<include refid="myBuilding"></include>
-		</where>
 		order by updated_at desc
 		limit 6
 	</select>
@@ -38,17 +35,7 @@
 		)
 	</insert>
 
-	<update id="deleteNotice" parameterType="int">
-		update public.notice
-		<set>
-			delete_flag = '1'
-		</set>
-		<where>
-			no = #{no}
-		</where>
-	</update>
-
-	<update id="modifyNotice"
+	<update id="updateNotice"
 		parameterType="com.cosmos.dto.NoticeDTO">
 		UPDATE public.notice
 		<set>

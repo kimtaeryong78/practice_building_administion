@@ -8,10 +8,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cosmos.dto.ConsultationDTO;
 import com.cosmos.service.ConsultationService;
+import com.cosmos.service.NoticeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class ServiceTest {
+	@Autowired
+	public NoticeService nService;
+
 	@Autowired
 	public ConsultationService cService;
 
@@ -19,7 +23,7 @@ public class ServiceTest {
 	public void Test() {
 		// System.out.println(Cservice.readAllBoard());
 		ConsultationDTO consultation = new ConsultationDTO();
-		consultation.setNo(65);
+		consultation.setNo(100);
 		consultation.setTitle("modify1234あかさた漢字");
 		consultation.setContents("modify1234あかさた漢字");
 		consultation.setName("modify1234あかさた漢字");
@@ -30,6 +34,11 @@ public class ServiceTest {
 		System.out.println(consultation);
 
 		cService.modifyBoard(consultation);
+	}
+
+	@Test
+	public void Test1() {
+		System.out.println(nService.readMainNotice());
 	}
 
 }

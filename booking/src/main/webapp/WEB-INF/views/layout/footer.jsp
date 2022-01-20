@@ -8,7 +8,7 @@
 <body>
 	<footer>
 		<div class="container">
-			<div class="row">
+			<div class="row mt-4">
 				<div class="col-lg-6">
 					<div class="text-left">
 						<span class="d-inline">&copy; bootstrap 5 | KIMTAERYONG </span> 

@@ -12,9 +12,14 @@ public interface ConsultationMapper {
 
 	public ArrayList<ConsultationDTO> getAllBoard();
 
+	public ConsultationDTO getBoard(int no);
+
+	public int getNextBoardNum();
+
 	public int countApply(int grno);
 
 	public void insertBoard(ConsultationDTO consultation);
 
 	public void updateBoard(ConsultationDTO consultation);
+
 }

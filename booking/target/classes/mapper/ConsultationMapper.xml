@@ -21,8 +21,32 @@
 	<select id="getAllBoard"
 		resultType="com.cosmos.dto.ConsultationDTO">
 		select * from consultation
+		<where>
+			<include refid="myBuilding"></include>
+			AND
+			<include refid="delete">
+				<property name="flag" value="'0'" />
+			</include>
+			order by grno desc
+		</where>
 	</select>
-
+	
+	<select id="getNextBoardNum" resultType="int">
+		select max(grno)+1 from consultation
+		<where>
+			<include refid="myBuilding"></include>
+		</where> 
+	</select>
+	
+	<select id="getBoard"
+		resultType="com.cosmos.dto.ConsultationDTO"
+		parameterType="int">
+		select * from consultation
+		<where>
+			no=#{no}
+		</where>
+	</select>
+	
 	<select id="countApply" resultType="int">
 		select count(grno) from consultation
 		<where>
@@ -36,7 +60,7 @@
 		</where>
 	</select>
 
-	<insert id="insertBoard">
+	<insert id="insertBoard" parameterType="com.cosmos.dto.ConsultationDTO">
 		INSERT
 		INTO consultation(
 		"no"
@@ -71,32 +95,31 @@
 		)
 	</insert>
 
-	<update id="updateBoard"
-		parameterType="com.cosmos.dto.ConsultationDTO">
+	<update id="updateBoard" parameterType="com.cosmos.dto.ConsultationDTO">
 		UPDATE consultation
 		SET
 		<if test="title != null">
-			title = #{title}
+		title = #{title},
 		</if>
 		<if test="contents != null">
-			, contents = #{contents}
+		contents = #{contents},
 		</if>
 		<if test="name != null">
-			, name = #{name}
+		name = #{name},
 		</if>
 		<if test="passwd != null">
-			, passwd = #{passwd}
+		passwd = #{passwd},
 		</if>
 		<if test="lock_flag != null">
-			, lock_flag = #{lock_flag}
+		lock_flag = #{lock_flag},
 		</if>
 		<if test="delete_flag != null">
-			, delete_flag = #{delete_flag}
+		delete_flag = #{delete_flag},
 		</if>
-		, updated_at = now()
-		, build_code = 1
-		WHERE
-		"no" = #{no}
+		updated_at = now()
+		<where>
+		"no"= #{no}
+		</where>
 	</update>
 
 

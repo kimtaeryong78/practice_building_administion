@@ -59,10 +59,51 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
+	'use strict'
 	$(document).ready(function() {
-		$('#popover-permCheck').on('shown.bs.modal', function() {
-			$('#popover-permCheck-pw').focus();
-		})
+		$("#lock_flag").change(function() {
+		    if(this.checked) {
+		    	$('#passwdInput').prev().addClass('me-3');
+		    	$('#passwdInput').prop('hidden','');
+		    	$('#passwd').focus();
+		    }
+		    if(!this.checked){
+		    	$('#passwdInput').prev().removeClass('me-3');
+		    	$('#passwdInput').prop('hidden','hidden');
+		    	$('#passwd').val('').blur();
+		    }
+		}); //lock flag event
+		
+		if("${board}" != null){
+			$('input').attr('readonly',true);
+			$('textarea').attr('readonly',true);
+			if("${board.lock_flag}" == '1'){
+				$("#lock_flag").attr('checked',true);
+				$('#passwdInput').prev().addClass('me-3');
+		    	$('#passwdInput').prop('hidden','');
+			}else if("${board.lock_flag}" == '0'){
+				$('#passwdInput').prop('hidden','hidden');
+				$('#passwdInput').prev().removeClass('me-3');
+				$("#lock_flag").attr('checked',false);
+				$('#passwd').val('').blur();
+			}
+		};	//if lock_flag is setted at 1, show the password input window 
+		
+		$('.table').on('click','tr',function(){
+			location.href='/board/read?no='+$(this).data('no');
+			/* const customBoundary = $(this); */
+			/* if($(this).find('i').length()>0){
+				location.href='/board/read?no='+$(this).data('no');
+			} else if($(this).find('i').length()<=0){
+				location.href='/board/read?no='+$(this).data('no');
+			} */
+		});
+		$('.modify').on('click',function(){
+			$(this).attr('hidden',true);
+			$('input').attr('readonly',false);
+			$('textarea').attr('readonly',false);
+			$('form').prop('action','/board/modify/'+$('form').data('no'));
+		});
 	});
 </script>
 </html>

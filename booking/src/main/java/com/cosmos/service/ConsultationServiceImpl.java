@@ -57,4 +57,16 @@ public class ConsultationServiceImpl implements ConsultationService {
 		}
 		return result;
 	}
+
+	@Override
+	public ConsultationDTO readBoard(int no) {
+		ConsultationDTO consultation = new ConsultationDTO();
+		consultation = cMapper.getBoard(no);
+		return consultation;
+	}
+
+	@Override
+	public int nextBoardNumber() {
+		return cMapper.getNextBoardNum();
+	}
 }

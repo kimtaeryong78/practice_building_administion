@@ -12,6 +12,10 @@ public interface ConsultationService {
 
 	public ArrayList<ConsultationDTO> readAllBoard();
 
+	public ConsultationDTO readBoard(int no);
+
+	public int nextBoardNumber();
+
 	public int allNumberApply(int grno);
 
 	public String writeBoard(ConsultationDTO consultation);
