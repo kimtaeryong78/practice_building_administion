@@ -3,16 +3,19 @@
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  
 <tiles-definitions>
- 
     <!-- 화면의 기초가 되는 base -->
     <definition name="base" template="/WEB-INF/views/layout/template.jsp">
         <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
     </definition>
     
-    <!-- base를 상속받은 base/index -->
-    <definition name="base/index" extends="base">
-        <put-attribute name="body" value="/WEB-INF/views/base/index.jsp" />
+    <!-- exception process -->
+    <definition name="room" template="/WEB-INF/views/layout/room_template.jsp">
+        <put-attribute name="content" value="/WEB-INF/views/room/roomList.jsp" />
+        <put-attribute name="thumbnail" value="/WEB-INF/views/room/roomthumbnail.jsp" />
+    </definition>
+    <definition name="room/*" extends="room">
+        <put-attribute name="content" value="/WEB-INF/views/room/{1}.jsp" />
     </definition>
     
     <!-- 동적 매핑.
@@ -28,4 +31,5 @@
     <definition name="*/*/*" extends="base">
         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
     </definition>
+    
 </tiles-definitions>

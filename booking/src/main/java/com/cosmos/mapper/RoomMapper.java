@@ -13,10 +13,10 @@ public interface RoomMapper {
 
 	public RoomDTO getMyRoomInfoAtNo(int no);
 
-	public String insertMyRoomInfo(RoomDTO room_Info);
+	public void insertMyRoomInfo(RoomDTO room_Info);
 
-	public String modifyRoomInfo(RoomDTO room_Info);
+	public void modifyRoomInfo(RoomDTO room_Info);
 
-	public String deleteRoomInfo(int no);
+	public void deleteRoomInfo(int no);
 
 }

@@ -2,6 +2,8 @@ package com.cosmos.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,11 @@ public class MainController {
 	public NoticeService nService;
 
 	@GetMapping("/")
-	public String main(Model model) {
+	public String main(HttpServletRequest req, Model model) {
 		ArrayList<NoticeDTO> mainNoticeList = new ArrayList<NoticeDTO>();
 		mainNoticeList = nService.readMainNotice();
 		model.addAttribute("noticeList", mainNoticeList);
+
 		return "main";
 	} // main page
 

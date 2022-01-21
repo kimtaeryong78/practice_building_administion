@@ -16,11 +16,12 @@
 <!-- CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../css/pick-a-color-1.2.3.min.css">
-<link rel="stylesheet" href="../css/navbar-top-fixed.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="/css/pick-a-color-1.2.3.min.css">
+<link rel="stylesheet" href="/css/navbar-top-fixed.css">
+<link rel="stylesheet" href="/css/style.css">
 <!-- user CSS -->
 <style>
 .bd-placeholder-img {
@@ -104,6 +105,14 @@ body {
 			$('textarea').attr('readonly',false);
 			$('form').prop('action','/board/modify/'+$('form').data('no'));
 		});
+		
+		if(('${room_Info}')!=null){
+			$('option[value="${room_Info.room_num}"]')
+				.prop('selected',true)
+				.attr('data-roomNo','${room_Info.no}');
+			
+		}
 	});
+	
 </script>
 </html>

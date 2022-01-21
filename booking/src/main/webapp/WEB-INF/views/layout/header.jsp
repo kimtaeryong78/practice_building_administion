@@ -11,7 +11,7 @@
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="/"> 
-					<img src="../img/logo.png" width="65" height="30" alt="sitename" />
+					<img src="/img/logo.png" width="65" height="30" alt="sitename" />
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -25,8 +25,8 @@
 						<li class="nav-item"><a class="nav-link" href="/#news">お知らせ</a></li>
 						<li class="nav-item"><a class="nav-link" href="/#map">位置</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board">掲示板</a></li>
-						<li class="nav-item"><a class="nav-link" href="/booking">お問い合わせ</a></li>
-						<li class="nav-item"><a class="nav-link" href="/room">ルーム情報入力・編集</a></li>
+						<li class="nav-item"><a class="nav-link" href="/booking">予約</a></li>
+						<li class="nav-item"><a class="nav-link" href="/room">ルーム</a></li>
 					</ul>
 				</div>
 			</div>
@@ -46,13 +46,13 @@
 				</div>
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="../img/main01.jpg" class="img-fluid d-block w-100" style="filter: blur(4px); height: 300px; object-fit: cover;" alt="...">
+						<img src="/img/main01.jpg" class="img-fluid d-block w-100" style="filter: blur(4px); height: 300px; object-fit: cover;" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="../img/main02.jpg" class="img-fluid d-block w-100" style="filter: blur(4px); height: 300px; object-fit: cover;" alt="...">
+						<img src="/img/main02.jpg" class="img-fluid d-block w-100" style="filter: blur(4px); height: 300px; object-fit: cover;" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="../img/main03.jpg" class="img-fluid d-block w-100" style="filter: blur(4px); height: 300px; object-fit: cover;" alt="...">
+						<img src="/img/main03.jpg" class="img-fluid d-block w-100" style="filter: blur(4px); height: 300px; object-fit: cover;" alt="...">
 					</div>
 					<div class="carousel-caption shadow-lg text-start text-black" style="text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4); background: rgba(255, 255, 255, .3); padding: 30px;">
 						<h1>一層</h1>

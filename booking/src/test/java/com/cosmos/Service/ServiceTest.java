@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.cosmos.dto.ConsultationDTO;
 import com.cosmos.service.ConsultationService;
 import com.cosmos.service.NoticeService;
+import com.cosmos.service.RoomService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -19,6 +20,8 @@ public class ServiceTest {
 	@Autowired
 	public ConsultationService cService;
 
+	@Autowired
+	public RoomService rService;
 	@Test
 	public void Test() {
 		// System.out.println(Cservice.readAllBoard());
@@ -38,7 +41,8 @@ public class ServiceTest {
 
 	@Test
 	public void Test1() {
-		System.out.println(nService.readMainNotice());
+		// System.out.println(nService.readMainNotice());
+		System.out.println(rService.readAllRoomInfo());
 	}
 
 }
