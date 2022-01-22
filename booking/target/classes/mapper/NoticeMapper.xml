@@ -8,9 +8,7 @@
 
 	<select id="getAllNotice" resultType="com.cosmos.dto.NoticeDTO">
 		select * from notice
-		<where>
-			<include refid="myBuilding"></include>
-		</where>
+		order by updated_at desc
 	</select>
 
 	<select id="getMainNotice" resultType="com.cosmos.dto.NoticeDTO">
@@ -18,7 +16,14 @@
 		order by updated_at desc
 		limit 6
 	</select>
-
+	
+	<select id="getNotice" parameterType="int" resultType="com.cosmos.dto.NoticeDTO">
+		select * from notice 
+		<where>
+			no = #{no}
+		</where>
+	</select>
+	
 	<insert id="insertNotice"
 		parameterType="com.cosmos.dto.NoticeDTO">
 		INSERT

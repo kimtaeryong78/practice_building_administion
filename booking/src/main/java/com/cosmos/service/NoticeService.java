@@ -12,6 +12,8 @@ public interface NoticeService {
 
 	public ArrayList<NoticeDTO> readMainNotice(); // 六つ
 
+	public NoticeDTO readNotice(int no);
+
 	public String writeNotice(NoticeDTO notice);
 
 	public String removeNotice(int no);

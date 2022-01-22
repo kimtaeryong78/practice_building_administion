@@ -115,7 +115,8 @@ public class MapperTest {
 		// System.out.println(CMapper.countApply(1));
 		// System.out.println(NMapper.getMainNotice());
 		// System.out.println(rMapper.getAllMyRoomInfo());
-		System.out.println(rMapper.getMyRoomInfoAtNo(27));
+		// System.out.println(rMapper.getMyRoomInfoAtNo(27));
+		System.out.println(nMapper.getNotice(1));
 	}
 	@Test
 	public void Test2() throws NoSuchAlgorithmException {

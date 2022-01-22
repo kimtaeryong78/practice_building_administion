@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="d-flex flex-column shadow p-4">
-				<form role="form" action="/board/write" method="post" enctype="multipart/form-data" data-no="${board.no}">
+				<form id="boardForm" role="form" action="/board/write" method="post" enctype="multipart/form-data" data-no="${board.no}">
 					<div class="row mb-3">
 						<div class="col form-floating">
 							<input type="text" name="name" class="form-control" id="name" placeholder="名前" autofocus="autofocus" value="${board.name}"> 
@@ -40,12 +40,13 @@
 							<label class="form-check-label"> 秘密</label>
 						</div>
 						<div class="col-sm-12 text-center">
-							<c:if test="${board != null}">
+							<c:if test="${not empty board}">
 								<button type="button" class="btn btn-primary modify">修正</button>
 							</c:if>
-							<button type="button" class="btn btn-danger">キャンセル</button>
-							<button type="reset" class="btn btn-info">リセット</button>
 							<button type="submit" class="btn btn-success">確認</button>
+							<button type="button" class="btn btn-secondary emptyForm" hidden="true">空っぽに</button>
+							<input type="reset" class="btn btn-info"></input>
+							<button type="button" class="btn btn-danger">キャンセル</button>
 						</div>
 					</div>
 				</form>

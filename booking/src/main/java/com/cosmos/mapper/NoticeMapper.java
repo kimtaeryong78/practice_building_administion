@@ -13,6 +13,8 @@ public interface NoticeMapper {
 
 	public ArrayList<NoticeDTO> getMainNotice();
 
+	public NoticeDTO getNotice(int no);
+
 	public String insertNotice(NoticeDTO notice);
 
 	public String updateNotice(NoticeDTO notice);

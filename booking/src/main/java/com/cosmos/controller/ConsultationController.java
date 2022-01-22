@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cosmos.dto.ConsultationDTO;
 import com.cosmos.service.ConsultationService;
@@ -30,8 +29,8 @@ public class ConsultationController {
 		return "board/board";
 	}
 
-	@GetMapping("/read")
-	public String boardRead(@RequestParam int no, Model model) {
+	@GetMapping("/read/{no}")
+	public String boardRead(@PathVariable("no") int no, Model model) {
 		ConsultationDTO consultation = new ConsultationDTO();
 		try {
 			consultation = cService.readBoard(no);
@@ -62,9 +61,9 @@ public class ConsultationController {
 			consultation.setGrno(cService.nextBoardNumber());
 			consultation.setGrgrod(0);
 			consultation.setDepth(0);
-			System.out.println(consultation);
+			model.addAttribute("result", "success");
 			cService.writeBoard(consultation);
-			return "board/write";
+			return "/board/board";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("stack", e);

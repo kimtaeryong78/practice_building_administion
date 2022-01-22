@@ -41,7 +41,7 @@ body {
 }
 
 .selector-for-some-widget {
-  box-sizing: content-box;
+	box-sizing: content-box;
 }
 
 @media ( min-width : 768px) {
@@ -56,42 +56,61 @@ body {
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+	integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	'use strict'
+	
+	//after page readied
 	$(document).ready(function() {
-		$("#lock_flag").change(function() {
-		    if(this.checked) {
-		    	$('#passwdInput').prev().addClass('me-3');
-		    	$('#passwdInput').prop('hidden','');
-		    	$('#passwd').focus();
-		    }
-		    if(!this.checked){
-		    	$('#passwdInput').prev().removeClass('me-3');
-		    	$('#passwdInput').prop('hidden','hidden');
-		    	$('#passwd').val('').blur();
-		    }
-		}); //lock flag event
 		
-		if("${board}" != null){
-			$('input').attr('readonly',true);
-			$('textarea').attr('readonly',true);
-			if("${board.lock_flag}" == '1'){
-				$("#lock_flag").attr('checked',true);
+		$("#lock_flag").change(function() {
+			if (this.checked) {
 				$('#passwdInput').prev().addClass('me-3');
-		    	$('#passwdInput').prop('hidden','');
-			}else if("${board.lock_flag}" == '0'){
-				$('#passwdInput').prop('hidden','hidden');
+				$('#passwdInput').prop('hidden', '');
+				$('#passwd').focus();
+			}
+			if (!this.checked) {
 				$('#passwdInput').prev().removeClass('me-3');
-				$("#lock_flag").attr('checked',false);
+				$('#passwdInput').prop('hidden', 'hidden');
 				$('#passwd').val('').blur();
 			}
-		};	//if lock_flag is setted at 1, show the password input window 
-		
-		$('.table').on('click','tr',function(){
-			location.href='/board/read?no='+$(this).data('no');
+		}); //lock flag-event
+
+		if ("${not empty board}"|| "${not empty notice}") {
+			$('input').attr('readonly', true);
+			$('textarea').attr('readonly', true);
+			if ("${board.lock_flag}" == '1') {
+				$("#lock_flag").attr('checked', true);
+				$('#passwdInput').prev().addClass('me-3');
+				$('#passwdInput').prop('hidden', '');
+			} else if ("${board.lock_flag}" == '0') {
+				$('#passwdInput').prop('hidden', 'hidden');
+				$('#passwdInput').prev().removeClass('me-3');
+				$("#lock_flag").attr('checked', false);
+				$('#passwd').val('').blur();
+			}
+		}; //if lock_flag is setted at 1, show the password input window 
+
+		$('.table').on('click', 'tr', function(e) {
+			if ($(this).data("lock") == '1') {
+				e.preventDefault();
+				var toastElList = [].slice.call($('.toast'));
+				var toastList = toastElList.map(function(toastEl) {
+					return new bootstrap.Toast(toastEl)
+				});
+				toastList.forEach(toast => toast.show());
+			} else if ($(this).data("lock") == '0') {
+				location.href = '/' + $(this).data('type') + '/read/' + $(this).data('no');
+			}
 			/* const customBoundary = $(this); */
 			/* if($(this).find('i').length()>0){
 				location.href='/board/read?no='+$(this).data('no');
@@ -99,20 +118,33 @@ body {
 				location.href='/board/read?no='+$(this).data('no');
 			} */
 		});
-		$('.modify').on('click',function(){
-			$(this).attr('hidden',true);
-			$('input').attr('readonly',false);
-			$('textarea').attr('readonly',false);
-			$('form').prop('action','/board/modify/'+$('form').data('no'));
+
+		$('.modify').on('click', function() {
+			$(this).attr('hidden', true);
+			$('input').attr('readonly', false);
+			$('textarea').attr('readonly', false);
+			$('.emptyForm').attr('hidden',false);
+			$('form').prop('action', '/board/modify/' + $('form').data('no'));
+		});//modify button event
+
+		$('.emptyForm').on('click',function(){
+			var board = $("#boardForm");
+			board.find('input').val('');
+			board.find('textarea').val('');
 		});
 		
-		if(('${room_Info}')!=null){
-			$('option[value="${room_Info.room_num}"]')
-				.prop('selected',true)
-				.attr('data-roomNo','${room_Info.no}');
-			
-		}
+		if (('${not empty room_Info}')) {
+			$('option[value="${room_Info.room_num}"]').prop('selected', true).attr('data-roomNo', '${room_Info.no}');
+
+		};//booking setting
+
+		$(".newsList").on('click', function() {
+			location.href = '/news'
+		});
+		$(".toMain").on("click", function() {
+			location.href = "/";
+		});
+
 	});
-	
 </script>
 </html>

@@ -13,22 +13,25 @@
 			</div>
 			<div class="row bg-light pt-4">
 				<div class="col-md-6 col-lg-6">
-					<c:forEach var="notice" items="${noticeList}" varStatus="status" end="2">
-						<article>
-							<div class="bg-a pull-left"><c:out value="${status.index}"></c:out></div>
+					<c:forEach var="notice" items="${noticeList}" varStatus="status" end="5" step="2" >
+						<article >
+							<div class="bg-a pull-left"><c:out value="${status.count}"></c:out></div>
 							<h3>${notice.title}</h3>
 							<p style="height: 100px; overflow: hidden; text-overflow: ellipsis;">${notice.contents}</p>
 						</article>
 					</c:forEach>
 				</div>
 				<div class="col-md-6 col-lg-6">
-					<c:forEach var="notice" items="${noticeList}" varStatus="status" begin="3">
+					<c:forEach var="notice" items="${noticeList}" varStatus="status" begin="1" end="6" step="2">
 						<article>
-							<div class="bg-a pull-left"><c:out value="${status.index}"></c:out></div>
+							<div class="bg-a pull-left"><c:out value="${status.count}"></c:out></div>
 							<h3>${notice.title}</h3>
 							<p style="height: 100px; overflow: hidden; text-overflow: ellipsis;">${notice.contents}</p>
 						</article>
 					</c:forEach>
+				</div>
+				<div>
+					<button type="button" class="btn btn-link float-end text-dark newsList">&gt; すべて見る</button>
 				</div>
 			</div>
 		<hr>

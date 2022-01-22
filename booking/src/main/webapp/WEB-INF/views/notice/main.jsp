@@ -13,67 +13,53 @@
 	<div class="container">
 		<div class="d-flex flex-column shadow p-4">
 			<section class="rb-bbs rb-bbs-list">
-				<div class="rb-bbs-heading">
-					<div class="rb-search-result">総投稿数 : <c:out value="${boardCount}"></c:out> ()</div>
-				</div>
 				<div class="rb-bbs-body">
-					<!-- toast -->
-					<div aria-live="polite" aria-atomic="true" class="bg-dark position-relative" style="z-index: 1">
-						<div class="toast-container position-absolute p-3" id="toastPlacement">
-							<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" >
-								<div class="toast-header">
-									<strong class="me-auto">暗証番号確認</strong>
-									<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-								</div>
-								<div class="toast-body">
-									<p>秘密文です。暗証番号を入力してください。</p>
-									<div class="row mb-3">
-										<div class="col">
-											<label>Password</label>
-											<input type="password" class="form-control"　placeholder="Password">
-										</div>
-										<div class="col position-relative bottom-0 start-0">
-											<button type="submit" class="btn btn-sm btn-primary position-absolute bottom-0 start-0 passwordConfirm">確認</button>
-										</div>
-									</div>
+					<!-- popover -->
+					<div id="popover" data-bs-toggle="popover" data-bs-trigger="focus" hidden>
+						<form>
+							<div class="arrow"></div>
+							<h3 class="popover-title">
+								<span class="close pull-right" data-dismiss="popover-x">×</span>
+								<i class="fa fa-exclamation-circle fa-lg"></i> 비밀번호 확인
+							</h3>
+							<div class="popover-content">
+								<p>게시물 등록시에 입력했던 비밀번호를 입력해 주세요.</p>
+								<div class="form-group">
+									<label class="sr-only" for="popover-permCheck-pw">Password</label>
+									<input type="password" class="form-control"
+										id="popover-permCheck-pw" placeholder="Password">
 								</div>
 							</div>
-						</div>
+							<div class="popover-footer">
+								<button type="submit" class="btn btn-sm btn-primary">확인</button>
+								<button type="button" class="btn btn-sm btn-default"
+									data-dismiss="popover-x">취소</button>
+							</div>
+						</form>
 					</div>
-					<!-- toast -->
+					<!-- popover -->
 					<table class="table">
 						<colgroup>
-							<col width="50">
-							<col>
-							<col width="120">
+							<col width="10">
 							<col width="120">
 						</colgroup>
 						<thead>
 							<tr>
-								<th class="rb-num">番号</th>
-								<th class="rb-title">タイトル</th>
-								<th class="rb-user">ID</th>
 								<th class="rb-time">作成時間</th>
+								<th class="rb-title">タイトル</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${boardList}" var="board">
-								<tr data-type="board" data-no="${board.no}" data-lock="${board.lock_flag}">
-									<th class="rb-num" scope="row">${board.grno}</th>
-									<c:if test="${board.lock_flag == '1'}">
-										<td class="rb-title">秘密です<span class="badge"><%-- ${applyCount} --%></span>
-										<i class="bi bi-file-lock"></i>
-									</c:if>
-									<c:if test="${board.lock_flag == '0'}">
-										<td class="rb-title"> ${board.title}<span class="badge"><%-- ${applyCount} --%></span>
-									</c:if>
-									<td class="rb-user">${board.name}</td>
-									<fmt:formatDate var="boardDate" value="${board.updated_at}" pattern="yyyy-MM-dd" />
+							<c:forEach items="${noticeList}" var="notice">
+								<tr data-bs-trigger="click" data-type="news" data-no="${notice.no}">
+									<fmt:formatDate var="noticeDate" value="${notice.updated_at}" pattern="yyyy-MM-dd" />
+										<c:out value="${noticeDate}"></c:out> 
 									<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd"/>
-									<c:if test="${boardDate == today}">
-										<fmt:formatDate var="boardDate" value="${board.updated_at}" pattern="HH : mm" />
+									<c:if test="${noticeDate == today}">
+										<fmt:formatDate var="noticeDate" value="${notice.updated_at}" pattern="HH : mm" />
 									</c:if>
-									<td class="rb-time">${boardDate}</td>
+									<th class="rb-time">${noticeDate}</th>
+									<td class="rb-title"> ${notice.title}<span class="badge"><%-- ${applyCount} --%></span>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -123,23 +109,21 @@
 			</section>
 		</div>
 	</div>
-	<!-- modal -->
-	<div class="modal fade" id="modal-profile" tabindex="-1" role="dialog" aria-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modal-profile">
-		<div class="modal-dialog">
+	</div>
+	<div class="modal fade" id="modal-profile" tabindex="-1" role="dialog"
+		aria-labelledby="modal-profile">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">登録完了</h4>
-					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title">홍길동</h4>
 				</div>
-				<div class="modal-body">
-					登録しました。閉じてください。
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"　data-bs-dismiss="modal">Close</button>
-				</div>
+				<div class="modal-body">...</div>
 			</div>
 		</div>
 	</div>
-	<!-- modal end -->
 </body>
 </html>

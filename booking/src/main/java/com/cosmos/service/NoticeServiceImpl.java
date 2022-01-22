@@ -27,6 +27,10 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeList = noticeMapper.getMainNotice();
 		return noticeList;
 	}
+	@Override
+	public NoticeDTO readNotice(int no) {
+		return noticeMapper.getNotice(no);
+	}
 
 	@Override
 	public String writeNotice(NoticeDTO notice) {
