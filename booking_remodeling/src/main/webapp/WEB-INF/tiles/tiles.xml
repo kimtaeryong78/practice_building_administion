@@ -1,0 +1,16 @@
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+    <!-- 화면의 기초가 되는 base -->
+    <definition name="*" template="/WEB-INF/views/layout/template.jsp">
+        <put-attribute name="main" value="/WEB-INF/views/layout/main.jsp" />
+        <put-attribute name="room" value="/WEB-INF/views/layout/room.jsp" />
+        <put-attribute name="consultation" value="/WEB-INF/views/layout/consultation.jsp" />
+        <put-attribute name="booking" value="/WEB-INF/views/layout/booking.jsp" />
+        <put-attribute name="notice" value="/WEB-INF/views/layout/notice.jsp" />
+        <put-attribute name="map" value="/WEB-INF/views/layout/map.jsp" />
+    </definition>
+    
+</tiles-definitions>

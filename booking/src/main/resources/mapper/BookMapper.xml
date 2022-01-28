@@ -14,9 +14,26 @@
 		select * from booking
 		<where>
 			<include refid="myBuilding"></include>
+			and
+			delete_flag = '0'
+			and
+			cancel_flag = '0'
 		</where>
 	</select>
-
+	
+	<select id="getBooking" parameterType="int" resultType="com.cosmos.dto.BookingDTO">
+		select * from booking
+		<where>
+			<include refid="myBuilding"></include>
+			and
+			delete_flag = '0'
+			and
+			cancel_flag = '0'
+			and
+			room_no = #{no}
+		</where>
+	</select>
+	
 	<insert id="insertBooking"
 		parameterType="com.cosmos.dto.BookingDTO">
 		INSERT INTO public.booking

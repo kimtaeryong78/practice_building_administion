@@ -106,6 +106,7 @@ body {
 							<div class="col-lg-6">
 								<h1 class="display-5 fw-bold lh-1 mb-3">${room.room_title}</h1>
 								<p class="lead">${room.explanation}</p>
+								<div class="gantt"></div>
 								<div class="d-grid gap-2 d-md-flex justify-content-center">
 									<button type="button"
 										class="btn btn-primary btn-lg yoyaku"
@@ -165,7 +166,7 @@ body {
 
 	$(".yoyaku").on("click", function() {
 		location.href = "/booking/reservation/" + $(this).data('no');
-	})
+	});
 	
 </script>
 </html>

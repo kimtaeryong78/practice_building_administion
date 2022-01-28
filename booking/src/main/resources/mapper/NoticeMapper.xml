@@ -5,14 +5,41 @@
 
 <mapper namespace="com.cosmos.mapper.NoticeMapper">
 	<sql id="myBuilding"> build_code = 1 </sql>
-
-	<select id="getAllNotice" resultType="com.cosmos.dto.NoticeDTO">
+	
+	<select id="getAllNoticeNumber" resultType="int">
+		select count(no) from notice
+		<where>
+			delete_flag = '0'
+			and
+			<include refid="myBuilding"></include>
+		</where>
+	</select>
+	
+	<select id="getAllNotice" resultType="com.cosmos.dto.NoticeDTO" parameterType="map">
 		select * from notice
+		<where>
+			delete_flag = '0'
+			and
+			<include refid="myBuilding"></include>
+			<trim prefix="or" suffixOverrides="or">
+				<if test="#{notice.title} != null">
+					title like '%'||#{board.title}||'%' or
+				</if>
+				<if test="#{notice.contents} != null">
+					contents like '%'||#{board.contents}||'%' or
+				</if>
+			</trim>
+		</where>
 		order by updated_at desc
 	</select>
-
+	
 	<select id="getMainNotice" resultType="com.cosmos.dto.NoticeDTO">
 		select * from notice
+		<where>
+			<include refid="myBuilding"></include>
+			and
+			delete_flag = '0'
+		</where>
 		order by updated_at desc
 		limit 6
 	</select>
@@ -21,6 +48,10 @@
 		select * from notice 
 		<where>
 			no = #{no}
+			and
+			delete_flag = '0'
+			and
+			<include refid="myBuilding"></include>
 		</where>
 	</select>
 	
@@ -30,7 +61,7 @@
 		INTO public.notice
 		VALUES
 		(
-		(nextval('notice_seq')
+		nextval('notice_seq')
 		, #{title}
 		, #{contents}
 		, '0'

@@ -57,7 +57,7 @@
 					<div class="carousel-caption shadow-lg text-start text-black headerText" style="text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4); background: rgba(255, 255, 255, .3); padding: 30px;">
 						<h1>一層</h1>
 						<p>一層担当のキム・テリョンと申します。</p>
-						<p>どうぞよろしくお願いいたします。</p>
+						<pre>どうぞよろしくお願いいたします。</pre>
 					</div>
 				</div>
 				<button class="carousel-control-prev" type="button"

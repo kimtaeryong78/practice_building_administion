@@ -10,7 +10,9 @@
 		resultType="com.cosmos.dto.OptionsDTO">
 		select * from options
 		<where>
-			<include refid="myBuilding"></include>
+			activity = '0'
+			and
+			delete_flag = '0'
 		</where>
 	</select>
 
@@ -56,6 +58,5 @@
 			"no" = #{no}
 		</where>
 	</update>
-
 
 </mapper>

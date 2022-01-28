@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cosmos.mapper.SliderMapper">
+	<sql id="myBuilding">build_code = 1 </sql>
+	<sql id="flag">${component} = '0'</sql>
+
+	<select id="getSliders"
+		resultType="com.cosmos.dto.SliderImagesDTO">
+		select * from slider_images
+		<where>
+			<trim suffixOverrides="and">
+				<include refid="flag">
+					<property name="component" value="activity" />
+				</include>
+				and
+				<include refid="flag">
+					<property name="component" value="delete_flag" />
+				</include>
+				and
+				<include refid="myBuilding"></include>
+			</trim>
+		</where>
+		order by sort_no asc limit 5
+	</select>
+
+	<update id="updateSlider"
+		parameterType="com.cosmos.dto.SliderImagesDTO">
+		UPDATE slider_images
+		<set>
+			<trim suffix="," prefixOverrides=",">
+				<if test="#{file_name} != null">
+					file_name = #{file_name}
+				</if>
+				<if test="#{sort_no} != null">
+					sort_no = #{sort_no}
+				</if>
+				<if test="#{activity} != null">
+					activity = #{activity}
+				</if>
+				<if test="#{delete_flag} != null">
+					delete_flag = #{delete_flag}
+				</if>
+			</trim>
+			, updated_at = now()
+			, build_code = 1
+		</set>
+		<where>
+			"no" = #{no}
+		</where>
+	</update>
+
+	<insert id="insertSlider"
+		parameterType="com.cosmos.dto.SliderImagesDTO">
+		INSERT
+		INTO slider_images(
+		"no"
+		, file_name
+		, sort_no
+		,
+		activity
+		, delete_flag
+		, created_at
+		, updated_at
+		, build_code
+		)
+		VALUES (
+		nextval('slider_images_seq')
+		, #{file_name}
+		, #{sort_no}
+		, '0'
+		, '0'
+		,
+		now()
+		, now()
+		, 1
+		)
+
+	</insert>
+</mapper>

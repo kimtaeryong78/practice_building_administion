@@ -42,7 +42,27 @@ public class ServiceTest {
 	@Test
 	public void Test1() {
 		// System.out.println(nService.readMainNotice());
-		System.out.println(rService.readAllRoomInfo());
+		// System.out.println(rService.readAllRoomInfo());
+		// System.out.println(cService.readAllBoard(new Criteria(1, 10)));
+		/*
+		 * ConsultationDTO consultation = new ConsultationDTO();
+		 * System.out.println(consultation); HashMap<String, Object> map = new
+		 * HashMap<String, Object>(); Criteria cri = new Criteria(1, 15);
+		 * map.put("board", consultation); map.put("cri", cri);
+		 * System.out.println(cService.readAllBoard(map));
+		 */
+		try {
+			/*
+			 * rService.readImageList(30,
+			 * "C:\\Users\\1\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\booking\\")
+			 * rService.readAllRoomInfo(
+			 * "C:\\Users\\1\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\booking\\"
+			 * );
+			 */
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
