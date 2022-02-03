@@ -12,5 +12,5 @@ public interface OptionMapper {
 
 	public String insertOptions(OptionsDTO options);
 
-	public String modifyOptions(OptionsDTO options);
+	public String updateOptions(OptionsDTO options);
 }

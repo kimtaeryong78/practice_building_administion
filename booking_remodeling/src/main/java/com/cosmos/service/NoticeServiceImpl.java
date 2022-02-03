@@ -3,7 +3,6 @@ package com.cosmos.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cosmos.dto.NoticeDTO;
@@ -12,8 +11,11 @@ import com.cosmos.mapper.NoticeMapper;
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
-	@Autowired
-	public NoticeMapper noticeMapper;
+	private final NoticeMapper noticeMapper;
+
+	public NoticeServiceImpl(NoticeMapper nMapper) {
+		this.noticeMapper = nMapper;
+	}
 
 	@Override
 	public int countNotice() {

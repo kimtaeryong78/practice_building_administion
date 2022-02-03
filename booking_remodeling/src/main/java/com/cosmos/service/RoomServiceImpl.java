@@ -2,7 +2,6 @@ package com.cosmos.service;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cosmos.dto.RoomDTO;
@@ -12,8 +11,11 @@ import com.cosmos.util.Checksum;
 @Service
 public class RoomServiceImpl implements RoomService {
 
-	@Autowired
-	public RoomMapper rMapper;
+	private final RoomMapper rMapper;
+
+	public RoomServiceImpl(RoomMapper rMapper) {
+		this.rMapper = rMapper;
+	}
 
 	@Override
 	public ArrayList<RoomDTO> readAllRoomInfo() {
@@ -28,6 +30,37 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public ArrayList<String> readImageList(int no, ArrayList<String> fileList) throws Exception {
 		return Checksum.checksum(fileList, rMapper.getMyRoomInfoAtNo(no).getImages().split("/"));
+	}
+
+	@Override
+	public String writeRoom(RoomDTO room) {
+		try {
+			rMapper.insertMyRoomInfo(room);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+	}
+
+	@Override
+	public String modifyRoom(RoomDTO room) {
+		try {
+			rMapper.updateRoomInfo(room);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+	}
+
+	@Override
+	public String removeRoom(RoomDTO room) {
+		try {
+			room.setDelete_code("1");
+			rMapper.updateRoomInfo(room);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 
 }

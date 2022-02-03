@@ -11,5 +11,11 @@ public interface BookService {
 
 	public ArrayList<BookingDTO> readAllBooking();
 
-	public ArrayList<BookingDTO> readBooking(int no);
+	public BookingDTO readBooking(int no);
+
+	public String writeBooking(BookingDTO booking);
+
+	public String modifyBooking(BookingDTO booking);
+
+	public String deleteBooking(BookingDTO booking);
 }

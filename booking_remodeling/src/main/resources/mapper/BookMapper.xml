@@ -6,9 +6,6 @@
 <mapper namespace="com.cosmos.mapper.BookMapper">
 	<sql id="myBuilding"> build_code = 1 </sql>
 
-	<!-- <select id="getCurrentDate2" resultType="string"> select current_date 
-		</select> -->
-
 	<select id="getAllBooking"
 		resultType="com.cosmos.dto.BookingDTO">
 		select * from booking
@@ -64,24 +61,6 @@
 		, now()
 		, 1)
 	</insert>
-
-	<select id="getPresentCost"
-		resultType="com.cosmos.dto.BookingDTO">
-		select
-		cast(#{adult} as integer) * "room_Info".adult_cost
-		+
-		cast(#{child} as integer) * "room_Info".child_cost
-		+ (
-		select sum(cost)
-		from options
-		inner join unnest(string_to_array(#{options},'/')) 
-		as items 
-		on options.item = items 
-		from "room_Info"
-		<where>
-			"room_Info".no=#{room_no}
-		</where>
-	</select>
 
 	<update id="modifyBooking" parameterType="com.cosmos.dto.BookingDTO">
 		UPDATE booking

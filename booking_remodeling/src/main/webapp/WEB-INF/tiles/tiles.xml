@@ -3,8 +3,11 @@
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  
 <tiles-definitions>
-	<definition name="admin" templateExpression="/WEB-INF/views/admin/layout.jsp">
+	<definition name="admin/login" templateExpression="/WEB-INF/views/admin/login.jsp" />
+	<definition name="admin" templateExpression="/WEB-INF/views/admin/layout/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/admin/layout/header.jsp"/>
 		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/admin/layout/footer.jsp"/>
 	</definition>
 	
 	<definition name="admin/*" extends="admin">

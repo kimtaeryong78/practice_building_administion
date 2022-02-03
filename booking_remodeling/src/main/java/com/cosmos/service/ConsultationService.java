@@ -21,5 +21,7 @@ public interface ConsultationService {
 
 	public String modifyBoard(ConsultationDTO consultation);
 
+	public String deleteBoard(ConsultationDTO consultation);
+
 	ArrayList<ConsultationDTO> readAllBoard(HashMap<String, Object> board);
 }

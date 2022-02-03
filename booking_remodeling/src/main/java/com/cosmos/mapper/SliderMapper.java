@@ -13,6 +13,5 @@ public interface SliderMapper {
 
 	public void updateSlider(SliderImagesDTO sliderDTO);
 
-	public void deleteSlider(int no);
-
+	public void insertSlider(SliderImagesDTO sliderDTO);
 }

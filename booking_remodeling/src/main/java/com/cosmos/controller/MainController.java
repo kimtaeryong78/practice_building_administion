@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.SHA256Digest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,19 +42,19 @@ public class MainController {
 
 	@GetMapping("")
 	public String main(HttpServletRequest req, Model model) {
-		//current server location
+		// current server location
 		String filePath = req.getServletContext().getRealPath("/");
-		//image file list at filepath
+		// image file list at filepath
 		ArrayList<String> folderList = FolderArray.getFileName(filePath);
-		//sliderImage List
+		// sliderImage List
 		ArrayList<SliderImagesDTO> sliderList = sService.readSlider();
-		//room info List
+		// room info List
 		ArrayList<RoomDTO> roomList = rService.readAllRoomInfo();
-		//decorded slider image list
+		// decorded slider image list
 		ArrayList<SliderImagesDTO> filteredSliderList = new ArrayList<SliderImagesDTO>();
-		//decorded room image map <room_num,ArrayList<String>>
-		Map<String, ArrayList<String>>imageMap = new HashMap<String, ArrayList<String>>();
-		//decording slider images
+		// decorded room image map <room_num,ArrayList<String>>
+		Map<String, ArrayList<String>> imageMap = new HashMap<String, ArrayList<String>>();
+		// decording slider images
 		for (SliderImagesDTO slider : sliderList) {
 			SliderImagesDTO filtered = new SliderImagesDTO();
 			System.out.println(slider.toString());
@@ -66,30 +65,29 @@ public class MainController {
 			}
 			filteredSliderList.add(filtered);
 		}
-		//decording room images 
-		for(RoomDTO room : roomList) {
+		// decording room images
+		for (RoomDTO room : roomList) {
 			ArrayList<String> filteredRoomImageList = new ArrayList<String>();
 			String[] images = room.getImages().split("/");
-			for(String image : images) {
-				for(String file : folderList) {
-					if(image.equalsIgnoreCase(SHA256.encoding(file)+".jpg")) {
-						filteredRoomImageList.add(file+".jpg");
+			for (String image : images) {
+				for (String file : folderList) {
+					if (image.equalsIgnoreCase(SHA256.encoding(file) + ".jpg")) {
+						filteredRoomImageList.add(file + ".jpg");
 					}
 				}
 			}
 			imageMap.put(room.getRoom_num(), filteredRoomImageList);
 		}
-		
-		
+
 		model.addAttribute("sliderList", filteredSliderList);
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("imageMap", imageMap);
 		return "";
 	}
-	
+
 	@GetMapping("admin")
 	public String main() {
 		return "admin/login";
 	}
-	
+
 }

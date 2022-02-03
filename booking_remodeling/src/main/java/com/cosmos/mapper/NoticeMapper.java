@@ -9,7 +9,6 @@ import com.cosmos.dto.NoticeDTO;
 
 @Mapper
 public interface NoticeMapper {
-
 	public int getAllNoticeNumber();
 
 	public ArrayList<NoticeDTO> getAllNotice(HashMap<String, Object> noticeMap);

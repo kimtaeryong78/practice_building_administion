@@ -41,7 +41,7 @@
 		)
 	</insert>
 
-	<update id="modifyOptions" parameterType="com.cosmos.dto.OptionsDTO">
+	<update id="updateOptions" parameterType="com.cosmos.dto.OptionsDTO">
 		UPDATE options
 		<set>
 			<if test="item != null">

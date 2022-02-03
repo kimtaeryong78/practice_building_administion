@@ -21,4 +21,36 @@ public class SliderServiceImpl implements SliderService {
 		ArrayList<SliderImagesDTO> SliderList = sMapper.getSliders();
 		return SliderList;
 	}
+
+	@Override
+	public String insertSlider(SliderImagesDTO sliderDTO) {
+		try {
+			sMapper.insertSlider(sliderDTO);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+	}
+
+	@Override
+	public String modifySlider(SliderImagesDTO sliderDTO) {
+		try {
+			sMapper.updateSlider(sliderDTO);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+
+	}
+
+	@Override
+	public String deleteSlider(SliderImagesDTO sliderDTO) {
+		try {
+			sliderDTO.setDelete_flag("1");
+			sMapper.updateSlider(sliderDTO);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
+	}
 }

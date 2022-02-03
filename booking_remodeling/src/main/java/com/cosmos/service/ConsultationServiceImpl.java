@@ -12,8 +12,12 @@ import com.cosmos.mapper.ConsultationMapper;
 @Service
 public class ConsultationServiceImpl implements ConsultationService {
 
+	private final ConsultationMapper cMapper;
+
 	@Autowired
-	public ConsultationMapper cMapper;
+	public ConsultationServiceImpl(ConsultationMapper cMapper) {
+		this.cMapper = cMapper;
+	}
 
 	@Override
 	public int allNumberBoard() {
@@ -69,5 +73,16 @@ public class ConsultationServiceImpl implements ConsultationService {
 	@Override
 	public int nextBoardNumber() {
 		return cMapper.getNextBoardNum();
+	}
+
+	@Override
+	public String deleteBoard(ConsultationDTO consultation) {
+		try {
+			consultation.setDelete_flag("1");
+			cMapper.updateBoard(consultation);
+			return "success";
+		} catch (Exception e) {
+			return "fail";
+		}
 	}
 }

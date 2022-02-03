@@ -12,7 +12,6 @@ import com.cosmos.mapper.NoticeMapper;
 import com.cosmos.mapper.OptionMapper;
 import com.cosmos.mapper.RoomMapper;
 import com.cosmos.mapper.SliderMapper;
-import com.cosmos.util.SHA256;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -37,11 +36,9 @@ public class MapperTest {
 
 	@Test
 	public void initTest() {
-		/*
-		 * Stream<SliderImagesDTO> sStream = sMapper.getSliders().stream();
-		 * sStream.forEach(slider -> System.out.println(slider.toString()));
-		 */
-		System.out.println(SHA256.encoding("/img/main02"));
-		System.out.println(SHA256.encoding("/img/main03"));
+		System.out.println(bMapper.getAllBooking());
+		System.out.println(oMapper.getAllOptions());
+		System.out.println(rMapper.getAllMyRoomInfo());
+		System.out.println(sMapper.getSliders());
 	}
 }

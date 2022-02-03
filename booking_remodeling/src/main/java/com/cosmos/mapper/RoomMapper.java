@@ -15,7 +15,7 @@ public interface RoomMapper {
 
 	public void insertMyRoomInfo(RoomDTO room_Info);
 
-	public void modifyRoomInfo(RoomDTO room_Info);
+	public void updateRoomInfo(RoomDTO room_Info);
 
 	public void deleteRoomInfo(int no);
 

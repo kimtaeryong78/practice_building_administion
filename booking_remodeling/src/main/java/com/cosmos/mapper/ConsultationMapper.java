@@ -9,10 +9,7 @@ import com.cosmos.dto.ConsultationDTO;
 
 @Mapper
 public interface ConsultationMapper {
-
 	public int allCountBoard();
-
-	public ArrayList<ConsultationDTO> getAllBoard(HashMap<String, Object> boardMap);
 
 	public ConsultationDTO getBoard(int no);
 
@@ -24,4 +21,5 @@ public interface ConsultationMapper {
 
 	public void updateBoard(ConsultationDTO consultation);
 
+	public ArrayList<ConsultationDTO> getAllBoard(HashMap<String, Object> boardMap);
 }
