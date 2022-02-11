@@ -48,7 +48,7 @@ body {
 
 .form-signin {
 	width: 100%;
-	background: #555555;
+	background: white;
 	border-radius: 20px;
 	max-width: 330px;
 	padding: 15px;
@@ -74,14 +74,23 @@ body {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+.logo{
+	background: #555555;
+	width:82px;
+	height:52px;
+	border-radius: 20px;
+	margin:auto auto 20px auto;
+}
 </style>
 
 </head>
 <body class="text-center">
 	<main class="form-signin">
 		<form method="post" action="/admin/login">
-			<img class="mb-4" src="/img/logo.png" alt="logo"
+			<div class="logo">
+				<img class="mb-4" src="/img/logo.png" alt="logo"
 				width="72" height="57">
+			</div>
 			<h1 class="h3 mb-3 fw-normal">管理者ログイン</h1>
 
 			<div class="form-floating">

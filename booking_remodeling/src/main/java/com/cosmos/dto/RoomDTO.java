@@ -15,7 +15,7 @@ public class RoomDTO {
 	private String explanation;
 	private String images;
 	private String color_code;
-	private String delete_code;
+	private String delete_flag;
 	private Date created_at;
 	private Date updated_at;
 }

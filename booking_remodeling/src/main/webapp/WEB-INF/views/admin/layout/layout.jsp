@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
@@ -12,6 +12,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -125,27 +129,94 @@ body {
 	border-color: transparent;
 	box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+@media ( prefers-reduced-motion : reduce) {
+	.fade {
+		transition: none;
+	}
+}
 </style>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
-	integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
-	integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-	crossorigin="anonymous"></script>
+	src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha512-rCjfoab9CVKOH/w/T6GbBxnAH5Azhy4+q1EXW5XEURefHbIkRbQ++ZR+GBClo3/d3q583X/gO4FKmOFuhkKrdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<!-- <style type="text/css">
+.a, .b, .c {
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 3px solid #111;
+  border-radius: 100%;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.a {
+  animation-duration: 1500ms;
+}
+
+.b {
+  animation-duration: 4500ms;
+  transform-origin: 63% 63%;
+  width: 40px;
+  height: 40px;
+}
+
+.c {
+  animation-duration: 9000ms;
+  transform-origin: 74% 74%;
+  width: 20px;
+  height: 20px;
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -33px;
+  margin-left: -33px;
+}
+</style> -->
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="body" />
+	<!-- <div id="loader">
+		<span class="a"> 
+			<span class="b"> 
+				<span class="c"></span>
+			</span>
+		</span>
+	</div> -->
+	<div id="bodyContents">
+		<tiles:insertAttribute name="body" />
+	</div>
 	<tiles:insertAttribute name="footer" />
 </body>
+<!-- <script type="text/javascript">
+	$(window).on("load", function() {
+		$('#loader').hide();
+		$('#bodyContents').show();
+	});
+</script> -->
 </html>

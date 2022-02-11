@@ -2,9 +2,12 @@ package com.cosmos.service;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import com.cosmos.dto.OptionsDTO;
 import com.cosmos.mapper.OptionMapper;
 
+@Service
 public class OptionServiceImpl implements OptionService {
 
 	private final OptionMapper oMapper;
@@ -16,6 +19,11 @@ public class OptionServiceImpl implements OptionService {
 	@Override
 	public ArrayList<OptionsDTO> readAllOptions() {
 		return oMapper.getAllOptions();
+	}
+
+	@Override
+	public OptionsDTO readOptions(int no) {
+		return oMapper.getOptions(no);
 	}
 
 	@Override

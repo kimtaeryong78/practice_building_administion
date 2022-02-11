@@ -78,10 +78,11 @@
 				<tiles:insertAttribute name="map" />
 			</div>
 		</div>
-		<div class="logo position-absolute top-0 end-100">
-			<img src="/img/logo.png" width="65" height="30" alt="sitename" />
+		<div class="logo bg-secondary position-absolute top-0 end-0"style="z-index: 20;width: 100px;height: 50px;">
+			<img src="/img/logo.png" class="bg-secondary" width="100%" height="auto" alt="sitename" onclick="goMain()"/>
 		</div>
-		<div class="swiper-pagination"></div>
+		<div class="swiper-pagination tempswiper-pagination position-absolute end-0 d-flex align-items-center justify-content-center flex-column">
+		</div>
 	</div>
 	<!-- modal -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
@@ -117,15 +118,21 @@ var navs = ["メイン","ルーム","相談","予約","お知らせ","位置"];
 var swiper1 = new Swiper('.navSwiper', {
 	direction: "vertical",
 	slidesPerView: 1,
+	keyboard : {
+		enabled : true,
+	},
 	mousewheel: true,
 	autoplayDisableOnInteraction: false,
     pagination: {
-        el: '.swiper-pagination',
+        el: '.tempswiper-pagination',
         clickable : true,
    		renderBullet: function (index, className) {
-	    	return '<span class="' + className + '">' + (navs[index]) + '</span>';
+	    	return '<span class="' + className + ' w-100">' + (navs[index]) + '</span>';
 		},
 	},
 });
+function goMain(){
+	swiper1.slideTo(0,1000,true);
+}
 </script>
 </html>

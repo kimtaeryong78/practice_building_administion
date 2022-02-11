@@ -85,38 +85,34 @@
 		, grno
 		, grgrod
 		, "depth"
-		,
-		title
+		, title
 		, contents
 		, name
 		, passwd
 		, lock_flag
 		, delete_flag
 		, created_at
-		,
-		updated_at
+		, updated_at
 		, build_code
 		)
 		VALUES
 		(
 		nextval('consultation_seq')
 		, #{grno}
-		,
-		#{grgrod}
+		, #{grgrod}
 		, #{depth}
 		, #{title}
 		, #{contents}
 		, #{name}
 		, #{passwd}
-		,
-		#{lock_flag}
+		, #{lock_flag}
 		, '0'
 		, now()
 		, now()
 		, 1
 		)
 	</insert>
-
+	
 	<update id="updateBoard"
 		parameterType="com.cosmos.dto.ConsultationDTO">
 		UPDATE consultation

@@ -34,15 +34,36 @@
 	<update id="updateRoomInfo" parameterType="com.cosmos.dto.RoomDTO">
 		UPDATE public."room_Info"
 		SET
-		room_num = #{room_num}
-		, room_title = #{room_title}
-		, max = #{max}
-		, adult_cost = #{adult_cost}
-		, child_cost = #{child_cost}
-		, explanation = #{explanation}
-		, images = #{images}
-		, color_code = #{color_code}
-		, updated_at = now()
+		<trim suffix="," prefixOverrides=",">
+			<if test="room_num != null">
+				room_num = #{room_num}
+			</if>
+			<if test="room_title != null">
+				room_title = #{room_title}
+			</if>
+			<if test="max != 0">
+				max = #{max}
+			</if>
+			<if test="adult_cost != 0">
+				adult_cost = #{adult_cost}
+			</if>
+			<if test="child_cost != 0">
+				child_cost = #{child_cost}
+			</if>
+			<if test="explanation != null">
+				explanation = #{explanation}
+			</if>
+			<if test="images != null">
+				images = #{images}
+			</if>
+			<if test="color_code != null">
+				color_code = #{color_code}
+			</if>
+			<if test="delete_flag != null">
+				delete_flag = #{delete_flag}
+			</if>
+		</trim>
+		updated_at = now()
 		WHERE
 		"no" = #{no}
 	</update>

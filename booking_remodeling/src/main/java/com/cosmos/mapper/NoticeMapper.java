@@ -1,7 +1,6 @@
 package com.cosmos.mapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +10,7 @@ import com.cosmos.dto.NoticeDTO;
 public interface NoticeMapper {
 	public int getAllNoticeNumber();
 
-	public ArrayList<NoticeDTO> getAllNotice(HashMap<String, Object> noticeMap);
+	public ArrayList<NoticeDTO> getAllNotice();
 
 	public ArrayList<NoticeDTO> getMainNotice();
 

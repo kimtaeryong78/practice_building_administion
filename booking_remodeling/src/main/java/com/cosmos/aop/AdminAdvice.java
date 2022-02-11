@@ -35,4 +35,15 @@ public class AdminAdvice {
 		}
 		return result;
 	}
+
+	// @Around("execution(* com.cosmos.service.SliderService.modifySlider(..))")
+	public Object sliderTransaction(ProceedingJoinPoint pjp, HttpServletRequest req) {
+		Object result = null;
+		try {
+			result = pjp.proceed();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

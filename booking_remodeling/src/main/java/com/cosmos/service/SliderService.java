@@ -10,9 +10,11 @@ import com.cosmos.dto.SliderImagesDTO;
 public interface SliderService {
 	public ArrayList<SliderImagesDTO> readSlider();
 
+	public ArrayList<SliderImagesDTO> readAllSlider();
+
 	public String modifySlider(SliderImagesDTO sliderDTO);
 
-	public String insertSlider(SliderImagesDTO sliderDTO);
+	public String writeSlider(SliderImagesDTO sliderDTO);
 
-	public String deleteSlider(SliderImagesDTO sliderDTO);
+	public String removeSlider(SliderImagesDTO sliderDTO);
 }

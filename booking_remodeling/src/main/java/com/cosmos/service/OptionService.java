@@ -10,6 +10,8 @@ import com.cosmos.dto.OptionsDTO;
 public interface OptionService {
 	public ArrayList<OptionsDTO> readAllOptions();
 
+	public OptionsDTO readOptions(int no);
+
 	public String writeOptions(OptionsDTO options);
 
 	public String modifyOptions(OptionsDTO options);

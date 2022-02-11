@@ -1,7 +1,6 @@
 package com.cosmos.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import com.cosmos.dto.NoticeDTO;
 public interface NoticeService {
 	public int countNotice();
 
-	public ArrayList<NoticeDTO> readAllNotice(HashMap<String, Object> noticeMap);
+	public ArrayList<NoticeDTO> readAllNotice();
 
 	public ArrayList<NoticeDTO> readMainNotice(); // 六つ
 

@@ -52,15 +52,4 @@ public class RoomServiceImpl implements RoomService {
 		}
 	}
 
-	@Override
-	public String removeRoom(RoomDTO room) {
-		try {
-			room.setDelete_code("1");
-			rMapper.updateRoomInfo(room);
-			return "success";
-		} catch (Exception e) {
-			return "fail";
-		}
-	}
-
 }

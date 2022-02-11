@@ -10,7 +10,9 @@ import com.cosmos.dto.OptionsDTO;
 public interface OptionMapper {
 	public ArrayList<OptionsDTO> getAllOptions();
 
-	public String insertOptions(OptionsDTO options);
+	public OptionsDTO getOptions(int no);
 
-	public String updateOptions(OptionsDTO options);
+	public void insertOptions(OptionsDTO options);
+
+	public void updateOptions(OptionsDTO options);
 }

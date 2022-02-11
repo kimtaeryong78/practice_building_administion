@@ -9,6 +9,8 @@ import com.cosmos.dto.SliderImagesDTO;
 @Mapper
 public interface SliderMapper {
 
+	public ArrayList<SliderImagesDTO> getSliderList();
+
 	public ArrayList<SliderImagesDTO> getSliders();
 
 	public void updateSlider(SliderImagesDTO sliderDTO);

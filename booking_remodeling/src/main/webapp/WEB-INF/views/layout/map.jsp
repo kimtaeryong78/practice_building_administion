@@ -8,8 +8,8 @@
 </head>
 <body>
 	<div class="container">
-		
-	
+		<h3>位置情報</h3>
+		<hr>
 		<div class="g-map">
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe width="100%" height="500"

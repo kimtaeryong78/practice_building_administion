@@ -23,7 +23,7 @@ public class SliderServiceImpl implements SliderService {
 	}
 
 	@Override
-	public String insertSlider(SliderImagesDTO sliderDTO) {
+	public String writeSlider(SliderImagesDTO sliderDTO) {
 		try {
 			sMapper.insertSlider(sliderDTO);
 			return "success";
@@ -44,7 +44,7 @@ public class SliderServiceImpl implements SliderService {
 	}
 
 	@Override
-	public String deleteSlider(SliderImagesDTO sliderDTO) {
+	public String removeSlider(SliderImagesDTO sliderDTO) {
 		try {
 			sliderDTO.setDelete_flag("1");
 			sMapper.updateSlider(sliderDTO);
@@ -52,5 +52,10 @@ public class SliderServiceImpl implements SliderService {
 		} catch (Exception e) {
 			return "fail";
 		}
+	}
+
+	@Override
+	public ArrayList<SliderImagesDTO> readAllSlider() {
+		return sMapper.getSliderList();
 	}
 }

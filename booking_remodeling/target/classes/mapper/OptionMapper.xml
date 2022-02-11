@@ -4,17 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cosmos.mapper.OptionMapper">
-	<sql id="myBuilding"> build_code = 1 </sql>
-
 	<select id="getAllOptions"
 		resultType="com.cosmos.dto.OptionsDTO">
 		select * from options
 		<where>
-			activity = '0'
-			and
 			delete_flag = '0'
 		</where>
+		order by no desc
 	</select>
+
+	<select id="getOptions"
+		parameterType="int"
+		resultType="com.cosmos.dto.OptionsDTO">
+		select * from options
+		<where>
+			delete_flag = '0'
+			and
+			no = #{no}
+		</where>
+	</select>
+
 
 	<insert id="insertOptions"
 		parameterType="com.cosmos.dto.OptionsDTO">
@@ -24,15 +33,13 @@
 		, item
 		, cost
 		, activity
-		,
-		delete_flag
+		, delete_flag
 		, created_at
 		, updated_at
 		)
 		VALUES (
-		(nextval('options_seq')
-		,
-		#{item}
+		nextval('options_seq')
+		, #{item}
 		, #{cost}
 		, '0'
 		, '0'
@@ -41,18 +48,23 @@
 		)
 	</insert>
 
-	<update id="updateOptions" parameterType="com.cosmos.dto.OptionsDTO">
+	<update id="updateOptions"
+		parameterType="com.cosmos.dto.OptionsDTO">
 		UPDATE options
 		<set>
 			<if test="item != null">
 				item = #{item},
 			</if>
-			<if test="cost != null">
+			<if test="cost != 0">
 				cost = #{cost},
 			</if>
-			, activity = #{activity}
-			, delete_flag = #{delete_flag}
-			, updated_at = now()
+			<if test="activity != null">
+				activity = #{activity},
+			</if>
+			<if test="delete_flag != null">
+				delete_flag = #{delete_flag},
+			</if>
+				updated_at = now()
 		</set>
 		<where>
 			"no" = #{no}

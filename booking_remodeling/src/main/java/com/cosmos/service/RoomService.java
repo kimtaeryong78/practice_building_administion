@@ -18,5 +18,4 @@ public interface RoomService {
 
 	public String modifyRoom(RoomDTO room);
 
-	public String removeRoom(RoomDTO room);
 }

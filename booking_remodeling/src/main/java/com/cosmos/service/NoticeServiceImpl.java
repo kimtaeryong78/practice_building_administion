@@ -1,7 +1,6 @@
 package com.cosmos.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,9 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public ArrayList<NoticeDTO> readAllNotice(HashMap<String, Object> noticeMap) {
+	public ArrayList<NoticeDTO> readAllNotice() {
 		ArrayList<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-		noticeList = noticeMapper.getAllNotice(noticeMap);
+		noticeList = noticeMapper.getAllNotice();
 		return noticeList;
 	}
 

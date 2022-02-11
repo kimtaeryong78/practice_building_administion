@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:security="http://www.springframework.org/schema/security"
@@ -9,43 +10,64 @@
 	https://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
 	http://mybatis.org/schema/mybatis-spring 
 	http://mybatis.org/schema/mybatis-spring-1.2.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
 	<!-- properties -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:/jdbc.properties" />
-        <property name="fileEncoding" value="UTF-8" />
-    </bean>
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath:/jdbc.properties" />
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
 
-    <!-- JDBC-PostgreSQL -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-    </bean>
+	<!-- JDBC-PostgreSQL -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
-    	<property name="mapperLocations" value="classpath*:mapper/**/*.xml"/>  
-    	<property name="dataSource" ref="dataSource" /> 
-    </bean> 
-    
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> 
-    	<constructor-arg index="0" ref="sqlSessionFactory" /> 
-    </bean>
-    
-    <mybatis-spring:scan base-package="com.cosmos.mapper"/>
-    
-   	<context:component-scan base-package="com.cosmos.dto"></context:component-scan>
-   	<context:component-scan base-package="com.cosmos.service"></context:component-scan>
-   	<context:component-scan base-package="com.cosmos.aop"></context:component-scan>
-   	
-   	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations"
+			value="classpath*:mapper/**/*.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionFactory">
+			<bean
+				class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
+		</property>
+	</bean>
+
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<mybatis-spring:scan
+		base-package="com.cosmos.mapper" />
+
+	<context:component-scan
+		base-package="com.cosmos.dto"></context:component-scan>
+	<context:component-scan
+		base-package="com.cosmos.service"></context:component-scan>
+	<context:component-scan
+		base-package="com.cosmos.aop"></context:component-scan>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>

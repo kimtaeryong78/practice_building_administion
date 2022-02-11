@@ -7,6 +7,15 @@
 	<sql id="myBuilding">build_code = 1 </sql>
 	<sql id="flag">${component} = '0'</sql>
 
+	<select id="getSliderList"
+		resultType="com.cosmos.dto.SliderImagesDTO">
+		select * from slider_images
+		<where>
+			<include refid="myBuilding"></include>
+		</where>
+		order by sort_no asc
+	</select>
+	
 	<select id="getSliders"
 		resultType="com.cosmos.dto.SliderImagesDTO">
 		select * from slider_images
@@ -25,33 +34,30 @@
 		</where>
 		order by sort_no asc limit 5
 	</select>
-
+	
 	<update id="updateSlider"
 		parameterType="com.cosmos.dto.SliderImagesDTO">
 		UPDATE slider_images
 		<set>
 			<trim suffix="," prefixOverrides=",">
-				<if test="#{file_name} != null">
-					file_name = #{file_name}
-				</if>
-				<if test="#{sort_no} != null">
+				<if test="sort_no != null">
 					sort_no = #{sort_no}
 				</if>
-				<if test="#{activity} != null">
+				<if test="activity != null">
 					activity = #{activity}
 				</if>
-				<if test="#{delete_flag} != null">
+				<if test="delete_flag != null">
 					delete_flag = #{delete_flag}
 				</if>
 			</trim>
-			, updated_at = now()
+			updated_at = now()
 			, build_code = 1
 		</set>
 		<where>
 			"no" = #{no}
 		</where>
 	</update>
-
+	
 	<insert id="insertSlider"
 		parameterType="com.cosmos.dto.SliderImagesDTO">
 		INSERT
@@ -69,14 +75,12 @@
 		VALUES (
 		nextval('slider_images_seq')
 		, #{file_name}
-		, #{sort_no}
+		, (SELECT CAST ((select max(sort_no) from slider_images where build_code = 1) AS INTEGER) + 1) 
 		, '0'
 		, '0'
-		,
-		now()
+		, now()
 		, now()
 		, 1
 		)
-
 	</insert>
 </mapper>
