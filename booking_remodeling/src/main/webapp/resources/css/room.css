@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.s1_arrow{display:inline-block; position:relative; margin-left:-10px; text-align:center; animation:arrow_right 1.5s infinite;}
+.scroll-arrow {width:10px; height:10px; border-right: 3px solid black; border-bottom: 3px solid black;
+transform: rotate(135deg); -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -o-transform: rotate(135deg);  -ms-transform: rotate(135deg);
+animation: arrow-wave 1s infinite; animation-direction: alternate;}
+.scroll-arrow:nth-child(3) {animation-delay: 0.1s;}
+.scroll-arrow:nth-child(2) {animation-delay: 0.2s;}
+.scroll-arrow:nth-child(1) {animation-delay: 0.3s;}
+@keyframes arrow-wave {
+0% {opacity: 0;}
+50% {opacity: .5;}
+100% {opacity: 1;}
+}
+@keyframes arrow_right{
+0%{right:28px;}
+50%{right:40px;}
+100%{right:28px;}
+}

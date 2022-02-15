@@ -6,10 +6,9 @@ import lombok.Data;
 public class Criteria {
 	private int pageNum;
 	private int amount;
-	private int paginationNum;
 
 	public Criteria() {
-		this(1, 15);
+		this(1, 10);
 	}
 
 	public Criteria(int pageNum, int amount) {

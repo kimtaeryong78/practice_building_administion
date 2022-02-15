@@ -41,7 +41,8 @@ public class MainController {
 	private final SliderService sService;
 
 	@Autowired
-	public MainController(BookService bService, ConsultationService cService, NoticeService nService, OptionService oService, RoomService rService, SliderService sService) {
+	public MainController(BookService bService, ConsultationService cService, NoticeService nService,
+			OptionService oService, RoomService rService, SliderService sService) {
 		this.bService = bService;
 		this.cService = cService;
 		this.nService = nService;
@@ -109,6 +110,8 @@ public class MainController {
 		ArrayList<ConsultationDTO> consultationList = cService.readAllBoard(boardMap);
 		int boardCount = cService.allNumberBoard();
 
+		ArrayList<OptionsDTO> optionsList = oService.readAllOptions();
+
 		model.addAttribute("sliderList", filteredSliderList);
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("imageMap", roomImageMap);
@@ -122,6 +125,8 @@ public class MainController {
 
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("noticePageProp", new PageDTO(new Criteria(), noticeCount));
+
+		model.addAttribute("optionsList", optionsList);
 		return "";
 	}
 

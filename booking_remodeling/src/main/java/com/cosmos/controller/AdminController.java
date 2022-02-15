@@ -45,7 +45,8 @@ public class AdminController {
 	private final OptionService oService;
 
 	@Autowired
-	public AdminController(ConsultationService cService, RoomService rService, BookService bService, NoticeService nService, SliderService sService, OptionService oService) {
+	public AdminController(ConsultationService cService, RoomService rService, BookService bService,
+			NoticeService nService, SliderService sService, OptionService oService) {
 		this.cService = cService;
 		this.rService = rService;
 		this.bService = bService;
@@ -62,7 +63,8 @@ public class AdminController {
 
 	///////////// admin login
 	@PostMapping("login")
-	public String adminLoginProcess(@RequestParam("id") String id, @RequestParam("password") String password, Model model, HttpServletRequest req) {
+	public String adminLoginProcess(@RequestParam("id") String id, @RequestParam("password") String password,
+			Model model, HttpServletRequest req) {
 		if (id.equals("admin") && password.equals("admin")) {
 			HttpSession session = req.getSession();
 			session.setAttribute("id", id);
@@ -83,6 +85,7 @@ public class AdminController {
 		model.addAttribute("message", "logout");
 		return "redirect:/";
 	}
+
 	//////////////// consultation
 	@GetMapping("consultation")
 	public String consultationManagement(ConsultationDTO consultation, Criteria cri, Model model) {
@@ -134,6 +137,7 @@ public class AdminController {
 		model.addAttribute("roomImageMap", roomImageMap);
 		return "admin/room";
 	}
+
 	///////// notice
 	@GetMapping("notice")
 	public String noticeManagement(Model model) {
@@ -183,5 +187,14 @@ public class AdminController {
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("optionList", optionList);
 		return "admin/book";
+	}
+
+	@GetMapping("options")
+	public String optionsManagement(Model model) {
+		model.addAttribute("title", "オプション管理");
+		ArrayList<OptionsDTO> optionList = oService.readAllOptions();
+
+		model.addAttribute("optionsList", optionList);
+		return "admin/options";
 	}
 }

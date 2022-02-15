@@ -65,7 +65,7 @@
 				</div>
 			</div>
 		</div>
-		<table class="table table-striped">
+		<table class="table table-striped overflow-hidden">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
